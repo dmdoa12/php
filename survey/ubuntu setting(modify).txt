@@ -1,0 +1,27 @@
+모든 명령어는 root 기준
+
+우분투 업데이트 및 최신화
+apt-get update
+apt-get upgrade
+
+메일 발송 프로그램 설치
+apt-get install sendmail
+
+Apache2 설치
+apt-get install apache2
+
+버전체크
+apache2 -v
+
+모듈 활성화 및 비활성화
+a2enmod rewrite 다시쓰기 모듈
+a2enmod headers 헤더
+a2dismod -f autoindex 인덱스 비활성화
+
+php 7.0 설치
+apt-get install php
+
+php-아파치 연동모듈 설치
+apt-get install libapache2-mod-php7.0
+
+
