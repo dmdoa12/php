@@ -1,5 +1,0 @@
-무료 소스(ui 등등)
-http://sourcetree.kr/?cat=UI
-
-css 레이아웃 강의 사이트
-http://ko.learnlayout.com/no-layout.html
