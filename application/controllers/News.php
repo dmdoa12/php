@@ -3,22 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class News extends CI_Controller {
 
-	var $layout = 'main_layout.php';
-
 	public function index()
 	{
-		$this->load->view('main');
+		$this->load->database();
+		$this->load->view('head.php');
+		$this->load->view('main.php');
+		$this->load->view('footer.php');
 	}
-	public function ajax_call()
-	{
-		$this->News = FALSE;
-
-		echo json_encode($array);
-	}
-	public function get($id)
-	{
-		echo '토픽'.$id;
-	}
-
 }
-?>
