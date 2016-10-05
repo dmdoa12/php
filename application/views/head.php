@@ -25,6 +25,11 @@
 					<!-- Everything you want hidden at 940px or less, place within here -->
 					<div class="nav-collapse collapse">
 						<!-- .nav, .navbar-search, .navbar-form, etc -->
+						<ul class="nav nav-pills pull-right">
+							<li><a href="#">로그인</a></li>
+							<li><a href="#">회원가입</a></li>
+							<li><a href="#">id/pw찾기</a></li>
+						</ul>
 					</div>
 
 				</div>

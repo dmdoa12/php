@@ -5,9 +5,16 @@ class News extends CI_Controller {
 
 	public function index()
 	{
+		/**
 		$this->load->database();
-		$this->load->view('head.php');
-		$this->load->view('main.php');
-		$this->load->view('footer.php');
+		$this->load->model('News_model');
+		$data = $this->News_model->gets();
+		foreach($data as $entry){
+			var_dump($entry);
+		}
+		**/
+		$this->load->view('head');
+		$this->load->view('main');
+		$this->load->view('footer');
 	}
 }
