@@ -8,13 +8,23 @@
 	<link href="/asset/css/main.css" rel="stylesheet">	
 	<link href="/asset/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">	
 	<link href="/asset/lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="/asset/lib/sweetalert-master/dist/sweetalert.css" rel="stylesheet" type="text/css" >
+	<script src="/asset/lib/sweetalert-master/dist/sweetalert.min.js"></script> 
 </head>
 <body>
+
+	<?php if($this->session->flashdata('message')){ ?>
+
+	<script>
+		swal('<?=$this->session->flashdata('message')?>','','error');
+	</script>
+	
+	<?php } ?>
 	<!-- 모달 -->
-	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal hide fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<?php $this->load->view("login_view"); ?>
 	</div>
-	<div class="modal fade" id="regiModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal hide fade" id="regiModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<?php $this->load->view("register_view"); ?>
 	</div>
 	<div id="accountModal" class="modal hide fade" tabindex="-1" data-focus-on="input:first">
