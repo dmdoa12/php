@@ -8,9 +8,10 @@
 	<link href="/asset/css/main.css" rel="stylesheet">	
 	<link href="/asset/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">	
 	<link href="/asset/lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="/asset/lib/sweetalert-master/dist/sweetalert.css" rel="stylesheet" type="text/css" >
+	<script src="/asset/lib/sweetalert-master/dist/sweetalert.min.js"></script> 
 </head>
 <body>
-	
 	<!--네비 -->
 	<div class="navbar">
 		<div class="navbar-inner">
@@ -29,7 +30,7 @@
 					<ul class="nav nav-pills pull-right">
 						 <em><strong><?php echo "님 환영합니다" ?></strong></em>
 						 &nbsp;&nbsp;&nbsp;
-						<button class="btn btn-primary" >로그아웃</button>
+						<a class="btn btn-primary" href="/index.php/Auth/logout">로그아웃</a>
 					</ul>
 				</div>
 

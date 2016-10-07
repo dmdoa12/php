@@ -15,9 +15,15 @@
 
 	<?php if($this->session->flashdata('message')){ ?>
 
-	<script>
-		swal('<?=$this->session->flashdata('message')?>','','error');
-	</script>
+		<script>
+			swal('<?=$this->session->flashdata('message')?>','','error');
+		</script>
+	
+	<?php } else if($this->session->flashdata('success')){ ?>
+	
+		<script>
+			swal('<?=$this->session->flashdata('success')?>','','success');
+		</script>
 	
 	<?php } ?>
 	<!-- 모달 -->

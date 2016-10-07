@@ -515,8 +515,3 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
-
-$config['authantication'] = array(
-	'id' => 'dmdoa12',
-	'password' => 'gmltjd12'
-	);

@@ -8,3 +8,4 @@
 			return $this->db->query("SELECT * FROM user")->result();
 		}
 	}
+?>
