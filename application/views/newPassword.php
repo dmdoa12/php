@@ -6,7 +6,6 @@
   <form class="form-horizontal" action="/index.php/Auth/pwModify" method="post">
     <div class="modal-body">
       <div class="row-fluid">
-        <div class="control-group"> <input class="span12" type="text" id="id" name="id" placeholder="아이디"> </div>
         <div class="control-group"> <input class="span12" type="password" id="new_passwd" name="new_passwd" placeholder="새 비밀번호"> </div>
         <div class="control-group"> <input class="span12" type="password" id="new_passwd_confirm" name="new_passwd_confirm" placeholder="새 비밀번호 확인"> </div>
       </div>

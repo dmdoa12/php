@@ -23,5 +23,23 @@ class Board_model extends CI_Model{
 
 		return $result;
 	}
+
+	public function get_view($id) {
+        $sql = "SELECT * FROM board WHERE boardNum = ".$id;
+        $query = $this->db->query($sql);
+ 
+        // 게시물 내용 반환
+        $result = $query->row();
+ 
+        return $result;
+    }
+
+    public function writeboard($option){
+    	$this->db->set('id',$option['id']);
+    	$this->db->set('boardDate',$option['boardDate'],false);
+    	$this->db->set('boardTitle',$option['boardTitle']);
+    	$this->db->set('boardContent',$option['boardContent']);
+    	$this->db->insert('board');
+    }
 }
 ?>

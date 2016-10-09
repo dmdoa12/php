@@ -55,4 +55,4 @@
 	</div>
 
 	<!-- 메인 그리드 -->
-	<div class="container-fluid">
+	<div class="container-fluid" style="position:relative;">

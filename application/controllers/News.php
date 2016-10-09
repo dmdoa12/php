@@ -12,5 +12,4 @@ class News extends CI_Controller {
 		$this->load->view('main');
 		$this->load->view('footer');
 	}
-	//게시판 로그인을 해야 접속 가능
 }
