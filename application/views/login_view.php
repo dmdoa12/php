@@ -2,7 +2,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">로그인</h3>
   </div>
-  <form class="form-horizontal" action="index.php/Auth/authantication" method="post">
+  <form class="form-horizontal" action="/index.php/Auth/authantication" method="post">
     <div class="modal-body">
       <div class="row-fluid">
         <div class="control-group"> <input class="span12" type="text" id="id" name="id" placeholder="아이디"> </div>
