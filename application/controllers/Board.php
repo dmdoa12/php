@@ -46,23 +46,22 @@ class Board extends CI_Controller{
         $this->load->view('board_view',$data);
 
         $this->load->view('_footer');
-    }
+    }//게시판 메인
 
     public function view($board_id) {
-    	$this->load->view('_head');
         // 게시판 이름과 게시물 번호에 해당하는 게시물 가져오기
         $data = $this->Board_model->get_view($board_id);
- 
-        // view 호출
-        $this->load->view('board_content',$data);
 
+    	$this->load->view('_head');
+        $this->load->view('board_content',$data);
         $this->load->view('_footer');
-    }
+    }//글보기
+
     public function write(){
     	$this->load->view('_head');
     	$this->load->view('board_write');
     	$this->load->view('_footer');
-    }
+    }//글쓰기
 
     public function insert(){
         $this->load->library("form_validation");
@@ -83,6 +82,40 @@ class Board extends CI_Controller{
                 ));
             $this->session->set_flashdata('success','글 작성이 완료되었습니다.');
             redirect("/Board");
+        }
+    }//글쓰기
+
+    public function delete($board_id){
+    	$this->Board_model->deleteboard($board_id);
+    	$this->session->set_flashdata('success','글 삭제가 완료되었습니다.');
+        redirect("/Board");
+    }
+
+    public function modify($board_id){
+        $data = $this->Board_model->get_view($board_id);
+
+        $this->load->view('_head');
+        $this->load->view('board_modify',$data);
+        $this->load->view('_footer');
+    }
+
+    public function boardmodify($board_id){
+        $this->load->library("form_validation");
+
+        $this->form_validation->set_rules('boardTitle', '글제목', 'required|max_length[50]');
+        $this->form_validation->set_rules('boardContent', '글내용', 'required|max_length[500]');
+
+        if($this->form_validation->run() == false){
+            $this->session->set_flashdata('message','입력 값을 확인해주시기 바랍니다.');
+            redirect("");
+        }
+        else{
+            $this->Board_model->modifyboard($board_id,array(
+                    'boardTitle' => $this->input->post('boardTitle'),
+                    'boardContent' => $this->input->post('boardContent')
+            ));
+            $this->session->set_flashdata('success','글 수정이 완료되었습니다.');
+            redirect("/Board/view/".$board_id);
         }
     }
 }

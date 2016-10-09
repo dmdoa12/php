@@ -41,5 +41,14 @@ class Board_model extends CI_Model{
     	$this->db->set('boardContent',$option['boardContent']);
     	$this->db->insert('board');
     }
+
+    public function deleteboard($id){
+    	$this->db->delete('board',array('boardNum' => $id));
+    }
+
+    public function modifyboard($id,$option){
+    	$this->db->where('boardNum',$id);
+    	$this->db->update('board',$option);
+    }
 }
 ?>
