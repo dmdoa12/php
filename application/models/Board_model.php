@@ -27,10 +27,10 @@ class Board_model extends CI_Model{
 	public function get_view($id) {
         $sql = "SELECT * FROM board WHERE boardNum = ".$id;
         $query = $this->db->query($sql);
- 
+
         // 게시물 내용 반환
         $result = $query->row();
- 
+
         return $result;
     }
 
@@ -49,6 +49,16 @@ class Board_model extends CI_Model{
     public function modifyboard($id,$option){
     	$this->db->where('boardNum',$id);
     	$this->db->update('board',$option);
+    }
+    //pagination
+    function total_entry(){
+        $query = $this->db->get('board');
+        return $query->num_rows();
+    }
+    // select
+    function select_entry($list_num,$offset){
+        $query = $this->db->get('board',$list_num,$offset);
+        return $query->result();
     }
 }
 ?>

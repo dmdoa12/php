@@ -27,20 +27,18 @@
           </tbody>
           <!-- table footer -->
           <tfoot>
-      <!--
-        <tr>
-          <th colspan="5"><?php echo $pagination;?></th>
-        </tr>
-      -->
-    </tfoot>
-  </table>
-</div>
-<div class="modal-footer">
-  <div class="row-fluid">
-    <span style="float:right">
-      <button class="btn btn-primary" type="button" onclick="location.href='/index.php/Board/write'">글쓰기</button>
-    </span>
-  </div>
-</div>
-</div>
-<?php } ?>
+            <tr>
+            <th colspan="5"><?php echo $pagination;?></th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <div class="row-fluid">
+          <span style="float:right">
+            <button class="btn btn-primary" type="button" onclick="location.href='/index.php/Board/write'">글쓰기</button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <?php } ?>
