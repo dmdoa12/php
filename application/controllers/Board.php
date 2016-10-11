@@ -107,8 +107,8 @@ class Board extends CI_Controller{
         $this->form_validation->set_rules('boardContent', '글내용', 'required|max_length[1000]');
 
         if($this->form_validation->run() == false){
-            $this->session->set_flashdata('message','입력 값을 확인해주시기 바랍니다.');
-            redirect("");
+            $this->session->set_flashdata('message','입력 범위를 초과했습니다.');
+            redirect("/Board/view/".$board_id);
         }
         else{
             $this->Board_model->modifyboard($board_id,array(

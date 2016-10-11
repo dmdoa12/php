@@ -22,5 +22,13 @@ class Comment_model extends CI_Model{
         return $result;
     }
 
+    public function removeComment($id){
+    	$this->db->delete('comment',array('commentNum' => $id));
+    }
+
+    public function commentModify($id,$option){
+        $this->db->where('commentNum',$id);
+        $this->db->update('comment',$option);
+    }
 }
 ?>

@@ -28,24 +28,47 @@
     </span>
 
     <table class="table table-bordered">
-    <!-- table head -->
-    <thead>
-      <tr>
-        <td style="width:15%;">작성자</td>
-        <td style="width:70%;">내용</td>
-        <td style="width:15%;">작성일</td>
-      </tr>
-    </thead>
-    <!-- table body -->
-    <tbody>
-      <?php foreach($comment_list as $lt) { ?>
+      <!-- table head -->
+      <thead>
+        <tr>
+          <td style="width:13%;">작성자</td>
+          <td style="width:70%;">내용</td>
+          <td style="width:17%;">작성일</td>
+        </tr>
+      </thead>
+      <!-- table body -->
+      <tbody>
+        <?php foreach($comment_list as $lt) { ?>
+        <!-- 댓글 수정 모드 -->
+        <?php if($this->session->userdata('modifyStatus')==true) { ?>
+        <tr>
         <th><?php echo $lt->id;?></th>
+          <?php if($this->session->userdata('comment_id')==$lt->commentNum) { ?>
+        <td style="word-break:break-all;"><input name="comment" type="text" style="width:95%;" value="<?php echo $lt->commentContent;?>"></input></a></td>
+        <td><?php echo $lt->commentDate;?>&nbsp&nbsp&nbsp
+        <i class="icon-ok" location.href='/index.php/Comment/modify/<?php echo $content->boardNum;?>/<?php echo $lt->commentNum?>/?comment' style="cursor:pointer;"></i>
+        <i class="icon-backward" onclick="location.href='/index.php/Comment/modifyCancel/<?php echo $content->boardNum;?>'" style="cursor:pointer;"></i></td>
+        </form>
+          <?php } else { ?>
         <td style="word-break:break-all;"><?php echo $lt->commentContent;?></a></td>
         <td><?php echo $lt->commentDate;?></td>
-      </tr>
-      <?php } ?>
-    </tbody>
-  </table>
-  </div>
-</form>
-<?php } ?>
+          <?php } ?>
+        <!-- 수정 전 모드 -->
+        </tr>
+        <?php } else { ?>
+          <tr>
+          <th><?php echo $lt->id;?></th>
+          <td style="word-break:break-all;"><?php echo $lt->commentContent;?></a></td>
+          <td><?php echo $lt->commentDate;?>&nbsp&nbsp&nbsp
+            <?php if($this->session->userdata('id')==$lt->id) { ?>
+            <i class="icon-repeat" onclick="location.href='/index.php/Comment/commentModify/<?php echo $content->boardNum;?>/<?php echo $lt->commentNum?>'" style="cursor:pointer;"></i>
+            <i class="icon-remove" onclick="location.href='/index.php/Comment/commentRemove/<?php echo $content->boardNum;?>/<?php echo $lt->commentNum?>'" style="cursor:pointer;"></i></td>
+            <?php } ?>
+          </tr>
+          <?php } ?>
+          <?php } ?>
+        </tbody>
+      </table>
+    </div>
+  </form>
+  <?php } ?>

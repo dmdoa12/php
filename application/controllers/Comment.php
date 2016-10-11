@@ -30,5 +30,38 @@ class Comment extends CI_Controller{
             redirect("/Board/view/".$board_id);
         }
 	}
+
+	public function commentRemove($board_id,$comment_id){
+		$this->Comment_model->removeComment($comment_id);
+    	$this->session->set_flashdata('success','댓글 삭제가 완료되었습니다.');
+        redirect("/Board/view/".$board_id);
+	}
+
+	public function commentModify($board_id,$comment_id){
+		$this->session->set_userdata("modifyStatus",true);
+		$this->session->set_userdata("comment_id",$comment_id);
+		redirect("/Board/view/".$board_id);
+	}
+
+	public function modify($board_id,$comment_id){
+        $this->form_validation->set_rules('comment', '댓글내용', 'required|max_length[500]');
+
+        if($this->form_validation->run() == false){
+            $this->session->set_flashdata('message','입력 범위를 초과했습니다.');
+            redirect("/Board/view/".$board_id);
+        }
+        else{
+            $this->Comment_model->commentModify($comment_id,array(
+                'comment' => $this->input->post('comment')
+                ));
+            $this->session->set_flashdata('success','댓글 수정이 완료되었습니다.');
+            redirect("/Board/view/".$board_id);
+        }
+	}
+
+	public function modifyCancel($board_id){
+		$this->session->unset_userdata("modifyStatus");
+		redirect("/Board/view/".$board_id);
+	}
 }
 ?>
