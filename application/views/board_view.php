@@ -16,23 +16,22 @@
         <thead>
           <!-- table body -->
           <tbody>
-            <?php foreach($list as $lt) { ?>
+            <?php foreach($query as $lt) { ?>
             <tr onclick="location.href='/index.php/Board/view/<?php echo $lt->boardNum;?>'">
               <th><?php echo $lt->boardNum;?></th>
-              <td><?php echo $lt->boardTitle;?></a></td>
+              <td><?php echo $lt->boardTitle;?></td>
               <td><?php echo $lt->id;?></td>
               <td><?php echo $lt->boardDate;?></td>
             </tr>
             <?php } ?>
           </tbody>
           <!-- table footer -->
-          <tfoot>
-            <tr>
-            <th colspan="5"><?php echo $pagination;?></th>
-            </tr>
-          </tfoot>
         </table>
-      </div>
+    <div style="margin: 0 auto;">
+        <hr>
+         <?php echo $pagination; ?>
+    </div>
+  </div>
       <div class="modal-footer">
         <div class="row-fluid">
           <span style="float:right">
@@ -40,5 +39,5 @@
           </span>
         </div>
       </div>
-    </div>
-    <?php } ?>
+  </div>
+<?php } ?>

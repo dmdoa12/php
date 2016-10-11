@@ -32,7 +32,7 @@
 					$this->session->set_flashdata('success','로그인 되었습니다.');
 					$this->session->set_userdata('id',$set_id);
 					$this->session->set_userdata("is_login",true);
-					redirect("/Board");
+					redirect("/Board/page");
 				}
 				else{
 					$this->session->set_flashdata('message','로그인에 실패 했습니다.');

@@ -7,45 +7,100 @@ class Board extends CI_Controller{
 		$this->load->model('Board_model');
         $this->load->model('Comment_model');
         $this->load->library('pagination');
-	}
 
-	function index($board_page=0){
-		if (!$this->session->userdata('is_login')) {
-			$this->session->set_flashdata('message','로그인을 하셔야 됩니다.');
-			$this->load->helper('url');
-			redirect("");
-     }
+    }
 
-     $this->load->view('_head');
-     $this->load->library('pagination');
-        // 페이지 네이션 설정
-     $config['base_url'] = '/index.php/Board';
-        // 페이징 주소
-     $config['total_rows'] = $this->Board_model->get_list('count');
-        // 게시물 전체 개수
-     $config['per_page'] = 4;
-        // 한 페이지에 표시할 게시물 수
-     $config['uri_segment'] = 3;
-        // 페이지 번호가 위치한 세그먼트
+    function index(){
 
-        // 페이지네이션 초기화
-     $this->pagination->initialize($config);
-        // 페이지 링크를 생성하여 view에서 사용한 변수에 할당
-     $data['pagination']=$this->pagination->create_links();
-
-        // 게시물 목록을 불러오기 위한 offset, limit 값 가져오기
-     $page=(int)($this->uri->segment(3,0));
-
-    $data['list'] = $this->Board_model->get_list('',$page,$config['per_page']);
-    $this->load->view('board_view',$data);
-
-    $this->load->view('_footer');
     }//게시판 메인
 
-    public function view($board_id) {
+    public function page($page_num=0){
+        $data['page'] = $this->uri->segment(3,0);
+
+        $data['total'] = $this->Board_model->getAll();
+        $config = array(
+            'base_url' => '/index.php/Board/page',
+            'total_rows' => $data['total'],
+            'per_page' => 7,
+            'num_links' => 10,
+            'uri_segment' => 3
+            );
+// $config['use_page_numbers'] = TRUE;
+        $config['query_string_segment'] = 'page';
+        $config['full_tag_open'] = '<div class="pagination"><ul>';
+        $config['full_tag_close'] = '</ul></div><!--pagination-->';
+        $config['first_link'] = '&laquo; First';
+        $config['first_tag_open'] = '<li class="prev page">';
+        $config['first_tag_close'] = '</li>';
+        $config['last_link'] = 'Last &raquo;';
+        $config['last_tag_open'] = '<li class="next page">';
+        $config['last_tag_close'] = '</li>';
+        $config['next_link'] = 'Next &rarr;';
+        $config['next_tag_open'] = '<li class="next page">';
+        $config['next_tag_close'] = '</li>';
+        $config['prev_link'] = '&larr; Previous';
+        $config['prev_tag_open'] = '<li class="prev page">';
+        $config['prev_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="active"><a href="">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['num_tag_open'] = '<li class="page">';
+        $config['num_tag_close'] = '</li>';
+// $config['display_pages'] = FALSE;
+// 
+        $config['anchor_class'] = 'follow_link';
+
+        $this->pagination->initialize($config);
+
+        $data['query'] = $this->Board_model->getList($config['per_page'], $data['page']);
+        $data['pagination']=$this->pagination->create_links();
+
+        $this->load->view('_head');
+        $this->load->view('board_view',$data);
+        $this->load->view('_footer');
+
+    }
+    public function view($board_id,$page_num=0) {
+        $data['page'] = $this->uri->segment(5,0);
+
+        $data['total'] = $this->Comment_model->comment_getAll();
+        $config = array(
+            'base_url' => '/index.php/Board/view/'.$board_id.'/page',
+            'total_rows' => $data['total'],
+            'per_page' => 5,
+            'num_links' => 10,
+            'uri_segment' => 5
+            );
+// $config['use_page_numbers'] = TRUE;
+        $config['query_string_segment'] = 'page';
+        $config['full_tag_open'] = '<div class="pagination"><ul>';
+        $config['full_tag_close'] = '</ul></div><!--pagination-->';
+        $config['first_link'] = '&laquo; First';
+        $config['first_tag_open'] = '<li class="prev page">';
+        $config['first_tag_close'] = '</li>';
+        $config['last_link'] = 'Last &raquo;';
+        $config['last_tag_open'] = '<li class="next page">';
+        $config['last_tag_close'] = '</li>';
+        $config['next_link'] = 'Next &rarr;';
+        $config['next_tag_open'] = '<li class="next page">';
+        $config['next_tag_close'] = '</li>';
+        $config['prev_link'] = '&larr; Previous';
+        $config['prev_tag_open'] = '<li class="prev page">';
+        $config['prev_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="active"><a href="">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['num_tag_open'] = '<li class="page">';
+        $config['num_tag_close'] = '</li>';
+// $config['display_pages'] = FALSE;
+// 
+        $config['anchor_class'] = 'follow_link';
+
+        $this->pagination->initialize($config);
+
+        $data['query'] = $this->Comment_model->comment_getList($config['per_page'], $data['page'],$board_id);
+        $data['pagination']=$this->pagination->create_links();
+
         // 게시판 이름과 게시물 번호에 해당하는 게시물 가져오기
         $data['content'] = $this->Board_model->get_view($board_id);
-        $data['comment_list'] = $this->Comment_model->get_reply_view($board_id);
 
         $this->load->view('_head');
         $this->load->view('board_content',$data);
@@ -82,14 +137,14 @@ class Board extends CI_Controller{
                 'id' => $this->session->userdata('id')
                 ));
             $this->session->set_flashdata('success','글 작성이 완료되었습니다.');
-            redirect("/Board");
+            redirect("/Board/page");
         }
     }//글쓰기
 
     public function delete($board_id){
     	$this->Board_model->deleteboard($board_id);
     	$this->session->set_flashdata('success','글 삭제가 완료되었습니다.');
-        redirect("/Board");
+        redirect("/Board/page");
     }
 
     public function modify($board_id){

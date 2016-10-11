@@ -51,14 +51,15 @@ class Board_model extends CI_Model{
     	$this->db->update('board',$option);
     }
     //pagination
-    function total_entry(){
+    public function getAll(){
         $query = $this->db->get('board');
         return $query->num_rows();
     }
-    // select
-    function select_entry($list_num,$offset){
-        $query = $this->db->get('board',$list_num,$offset);
-        return $query->result();
+
+    public function getList($limit=0, $offset=0){
+        $this->db->order_by("boardNum", "desc"); 
+        $query = $this->db->get('board',$limit,$offset)->result();
+        return $query;
     }
 }
 ?>
