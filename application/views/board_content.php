@@ -15,9 +15,9 @@
     <?php if($this->session->userdata('id')==$content->id) { ?>
         <a href="/index.php/Board/modify/<?php echo $content->boardNum;?>" class="btn btn-primary">수정</a>
         <a href="/index.php/Board/delete/<?php echo $content->boardNum;?>" class="btn btn-danger">삭제</a>
-        <a href="/index.php/Board" class="btn">목록</a>
+        <a href="/index.php/Board/page" class="btn">목록</a>
     <?php } else { ?>
-        <a href="/index.php/Board" class="btn">목록</a>
+        <a href="/index.php/Board/page" class="btn">목록</a>
     <?php } ?>
   </div>
 
@@ -104,6 +104,6 @@
         </tbody>
       </table>
     <div>
-      <?php echo $pagination; ?>
+      <center><?php echo $pagination; ?></center>
     </div> 
   <?php } ?><!-- foreach 종료 -->

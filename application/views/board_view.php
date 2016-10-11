@@ -27,10 +27,11 @@
           </tbody>
           <!-- table footer -->
         </table>
-    <div style="margin: 0 auto;">
+
+      <div class="row-fluid">
         <hr>
-         <?php echo $pagination; ?>
-    </div>
+        <center><?php echo $pagination; ?></center>
+      </div>
   </div>
       <div class="modal-footer">
         <div class="row-fluid">
