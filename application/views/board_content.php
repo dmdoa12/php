@@ -70,13 +70,16 @@
                 <button class="btn" type="submit">
                   <i class="icon-ok" style="cursor:pointer;"></i>
                 </button>
+                  <a href="/index.php/Comment/modifyCancel/<?php echo $content->boardNum;?>" class="btn">
+                    <i class="icon-backward"></i>
+                  </a>
               </td>
 
       </form>
+
+
       <!-- 댓글 수정 취소 버튼 -->
-      <a href="/index.php/Comment/modifyCancel/<?php echo $content->boardNum;?>" class="btn">
-        <i class="icon-backward"></i>
-      </a>
+
           <?php } else { ?>
               <td style="word-break:break-all;"><?php echo $lt->commentContent;?></a></td>
               <td><?php echo $lt->commentDate;?></td>

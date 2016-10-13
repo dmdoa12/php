@@ -15,13 +15,18 @@ class Board extends CI_Controller{
     }//게시판 메인
 
     public function page($page_num=0){
+        if ($this->session->userdata("is_login")==false) {
+
+            $this->session->set_flashdata('message','로그인이 필요합니다.');
+            redirect("");
+        }
         $data['page'] = $this->uri->segment(3,0);
 
         $data['total'] = $this->Board_model->getAll();
         $config = array(
             'base_url' => '/index.php/Board/page',
             'total_rows' => $data['total'],
-            'per_page' => 7,
+            'per_page' => 6,
             'num_links' => 10,
             'uri_segment' => 3
             );

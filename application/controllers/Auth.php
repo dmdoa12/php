@@ -16,16 +16,16 @@
 		}
 		//로그인 기능
 		public function authantication(){
-			$this->form_validation->set_rules('id', '아이디', 'required|max_length[20]');
-			$this->form_validation->set_rules('password', '비밀번호', 'required|max_length[20]');
-			
-			$user = $this->User_model->getId(array("id"=>$this->input->post("id")));
+			$this->form_validation->set_rules('id', '아이디', 'required');
+			$this->form_validation->set_rules('password', '비밀번호', 'required');
 
+			
 			if($this->form_validation->run() == false){
-				$this->session->set_flashdata('message','입력 값을 확인해주시기 바랍니다.');
-				redirect("");
+					$this->session->set_flashdata('message','아이디나 패스워드를 입력해주시기 바랍니다.');
+					redirect("");
 			}
 			else{
+				$user = $this->User_model->getId(array("id"=>$this->input->post("id")));
 				$set_id = $this->input->post("id");
 
 				if($this->input->post("id") == $user->id && password_verify($this->input->post("password"),$user->password)){

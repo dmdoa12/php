@@ -4,7 +4,7 @@
     <h2>뉴스 토론 게시판에 오신걸 환영합니다.</h2>
   </div>
   <div class="modal-body">
-    <table class="table table-hover">
+    <table class="table table-hover table-bordered">
       <!-- table head -->
       <thead class="info">
         <tr>

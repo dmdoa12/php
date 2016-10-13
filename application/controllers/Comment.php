@@ -12,8 +12,6 @@ class Comment extends CI_Controller{
 
 	}
 
-    public function comment_page()
-
 	public function commentWrite($board_id){
 		$this->form_validation->set_rules('comment','댓글 내용','required|max_length[500]');
 
