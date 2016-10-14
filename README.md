@@ -7,6 +7,6 @@
        db : mysql & mariadb<br>
      lang : php<br>
 framework : codeigniter<br>
-     link : <a href="ec2-52-37-198-200.us-west-2.compute.amazonaws.com">here</a>
+     link : <a href="/ec2-52-37-198-200.us-west-2.compute.amazonaws.com">here</a>
 
 
