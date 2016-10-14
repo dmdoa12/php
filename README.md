@@ -1,6 +1,6 @@
-<h2>php project<h2><br>
+<h1>php project</h1><br>
 
-프로젝트로 완성한 파일입니다<br>
+<h2>프로젝트로 완성한 파일입니다</h2><br>
 
 작업환경<br>
    server : ubuntu 14.04<br>
