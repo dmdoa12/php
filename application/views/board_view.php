@@ -8,10 +8,17 @@
       <!-- table head -->
       <thead class="info">
         <tr>
-          <td style="width:10%;">번호</td>
-          <td style="width:65%;">제목</td>
-          <td style="width:10%;">작성자</td>
-          <td style="width:15%;">작성일</td>
+          <?php if($this->session->userdata('id') == 'admin') { ?>
+                  <td style="width:10%;">번호</td>
+                  <td style="width:62%;">제목</td>
+                  <td style="width:10%;">작성자</td>
+                  <td style="width:18%;">작성일</td>
+          <?php } else { ?>
+                  <td style="width:10%;">번호</td>
+                  <td style="width:65%;">제목</td>
+                  <td style="width:10%;">작성자</td>
+                  <td style="width:15%;">작성일</td>
+          <?php } ?>
         </tr>
         <thead>
           <!-- table body -->
@@ -21,7 +28,13 @@
               <th><?php echo $lt->boardNum;?></th>
               <td><?php echo $lt->boardTitle;?></td>
               <td><?php echo $lt->id;?></td>
-              <td><?php echo $lt->boardDate;?></td>
+              <td><?php echo $lt->boardDate;?>&nbsp&nbsp&nbsp
+                <?php if($this->session->userdata('id') == 'admin') { ?>
+                    <a href="/index.php/Board/delete/<?php echo $lt->boardNum;?>" class="btn">
+                          <i class="icon-remove"></i>
+                    </a>
+                <?php } ?>
+              </td>
             </tr>
             <?php } ?>
           </tbody>
