@@ -74,7 +74,7 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> 'ec2-52-37-198-200.us-west-2.compute.amazonaws.com',
+	'dsn'	=> 'ec2-52-89-102-231.us-west-2.compute.amazonaws.com',
 	'hostname' => 'localhost',
 	'username' => 'dmdoa12',
 	'password' => 'gmltjd12',
